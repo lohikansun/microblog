@@ -19,8 +19,11 @@
         <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
      <%= if @current_user do %>
        <%= if @current_user.id != user.id do %>
-        <span><%= MicroblogWeb.UserView.is_following(@current_user, user.id) %></span>
-        <span ><%= link "Follow", to: follow_path(@conn, :follow, %{:user_id => @current_user, :follow_id => user.id}), class: "btn btn-success btn-xs" %></span>
+         <%= if MicroblogWeb.UserView.is_following(@current_user, user.id) do %>
+        <span ><%= link "Unfollow", to: follow_path(@conn, :delete, MicroblogWeb.FollowView.get_follow(@current_user, user.id)), method: :delete, class: "btn btn-outline-danger btn-xs" %></span>
+         <% else %>
+           <span ><%= link "Follow", to: follow_path(@conn, :follow, %{:user_id => @current_user, :follow_id => user.id}), class: "btn btn-success btn-xs" %></span>
+    <% end %>
     <% end %>
     <% end %>
       </td>
