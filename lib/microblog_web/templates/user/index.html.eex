@@ -1,23 +1,14 @@
-<h2>Listing Users</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= user.email %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
+<div class="container">
+    <div class="row">
+      <%= for user <- @users do %>
+       <div class="col-md-4 my-2">
+        <div class="card">
+          <h2 class="card-title"><%= user.email %></a></h2>
+          <div>
+            <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-     <%= if @current_user do %>
+         <%= if @current_user do %>
        <%= if @current_user.id != user.id do %>
          <%= if MicroblogWeb.UserView.is_following(@current_user, user.id) do %>
         <span ><%= link "Unfollow", to: follow_path(@conn, :delete, MicroblogWeb.FollowView.get_follow(@current_user, user.id)), method: :delete, class: "btn btn-outline-danger btn-xs" %></span>
@@ -26,9 +17,10 @@
     <% end %>
     <% end %>
     <% end %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+          </div>
+         </div>
+      </div>
+    <% end %>
+    </div>
+</div>
 <span><%= link "New User", to: user_path(@conn, :new) %></span>

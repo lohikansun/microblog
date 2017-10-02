@@ -1,16 +1,19 @@
-<h2>Show Message</h2>
+<div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <h2 class="card-title"><%= @message.post %></h2>
+          <dl class="row card-text">
+            <dt class="col-sm-3">Posted by</dt>
+            <dd class="col-sm-9"><%= Microblog.Accounts.get_user!(@message.user_id).email %></dd>
+            <dt class="col-sm-3">Posted at</dt>
+            <dd class="col-sm-9"><%= @message.updated_at %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<ul>
-
-  <li>
-    <strong>Post:</strong>
-    <%= @message.post %>
-    <strong>User:</stron>
-    <%= Microblog.Accounts.get_user!(@message.user_id).email %>
-  </li>
-
-
-</ul>
 
 <span><%= link "Edit", to: message_path(@conn, :edit, @message) %></span>
 <span><%= link "Back", to: message_path(@conn, :index) %></span>

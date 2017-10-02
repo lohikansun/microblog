@@ -4,7 +4,8 @@
   <thead>
     <tr>
       <th>Post</th>
-      <th>User</th>
+      <th>Last Updated</th>
+      <th>By</th>
 
       
     </tr>
@@ -13,6 +14,7 @@
 <%= for message <- @messages do %>
     <tr>
       <td><%= message.post %></td>
+      <td><%= message.updated_at %></td>
       <td><%= Microblog.Accounts.get_user!(message.user_id).email %></td>
       <td class="text-right">
         <span><%= link "Show", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
@@ -27,4 +29,4 @@
 <% end %>
   </tbody>
 </table>
-
+<span><%= link "New Message", to: message_path(@conn, :new), class: "btn btn-success" %></span>

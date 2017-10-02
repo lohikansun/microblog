@@ -1,15 +1,9 @@
-<h2>Show User</h2>
-
-<ul>
-
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
-</ul>
-<span><%= link "Edit User", to: user_path(@conn, :edit, @user) %></span>
-<h3>Messages</h3>
-  <table class="table table-striped">
+<div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <h2 class="card-title"><%= @user.email %></h2>
+          <table class="table table-striped">
       <tr>
         <th>Post</th>
         <th>Updated At</th>
@@ -22,8 +16,8 @@
     <% end %>
   </table>
 
-<h3>Following</h3>
-  <table class="table table-striped">
+          <h3>Following</h3>
+         <table class="table table-striped">
       <tr>
         <th>User</th>
       </th>
@@ -33,6 +27,11 @@
       </tr>
     <% end %>
   </table>
+         <button class="btn btn-outline-info"><%= link "Edit", to: user_path(@conn, :edit, @user)%></button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <span><%= link "Back", to: user_path(@conn, :index) %></span>
 
