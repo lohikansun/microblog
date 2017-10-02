@@ -6,6 +6,7 @@ defmodule MicroblogWeb.UserController do
 
   def index(conn, _params) do
     users = Accounts.list_users()
+    users = Microblog.Repo.preload(users, :follows)
     render(conn, "index.html", users: users)
   end
 
@@ -26,7 +27,7 @@ defmodule MicroblogWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user_preloaded(id)
     render(conn, "show.html", user: user)
   end
 

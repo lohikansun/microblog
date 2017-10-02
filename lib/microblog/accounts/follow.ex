@@ -5,16 +5,15 @@ defmodule Microblog.Accounts.Follow do
 
 
   schema "follows" do
-    field :user_id, :id
-    field :follow_id, :id
-
+    belongs_to :user, Microblog.Accounts.User
+    field :follow_id, :integer 
     timestamps()
   end
 
   @doc false
   def changeset(%Follow{} = follow, attrs) do
     follow
-    |> cast(attrs, [])
+    |> cast(attrs, [:user_id, :follow_id])
     |> validate_required([])
   end
 end

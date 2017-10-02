@@ -14,8 +14,10 @@
 
   <body>
     <nav class="navbar navbar-dark bg-dark justify-content-between">
-    <a class="navbar-brand" href="index.html">Blog?</a>
+    <h3>
+      <%= link "Blog?", to: message_path(@conn, :index), class: "navbar-brand" %></h3>
     <%= if @current_user do %>
+      <button type="button" class="btn btn-link"><%= link "New Message", to: message_path(@conn, :new) %></button>
       <span class="text-light">
         <%= @current_user.email %> |
         <%= link("logout", to: session_path(@conn, :logout), method: :delete) %>
@@ -28,15 +30,6 @@
     <% end %>
   </nav>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
-
       <div class="row">
         <div class="col-sm-12 my-2">
           <%= if get_flash(@conn, :info) do %> 

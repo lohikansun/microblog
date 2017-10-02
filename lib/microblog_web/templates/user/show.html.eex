@@ -6,8 +6,33 @@
     <strong>Email:</strong>
     <%= @user.email %>
   </li>
-
 </ul>
+<span><%= link "Edit User", to: user_path(@conn, :edit, @user) %></span>
+<h3>Messages</h3>
+  <table class="table table-striped">
+      <tr>
+        <th>Post</th>
+        <th>Updated At</th>
+      </th>
+      <%= Enum.map @user.messages, fn message -> %>
+      <tr>
+        <td><%= message.post %></td>
+        <td><%= message.updated_at %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+<h3>Following</h3>
+  <table class="table table-striped">
+      <tr>
+        <th>User</th>
+      </th>
+      <%= Enum.map @user.follows, fn follow -> %>
+      <tr>
+        <td><%= Microblog.Accounts.get_user!(follow.follow_id).email %></td>
+      </tr>
+    <% end %>
+  </table>
+
 <span><%= link "Back", to: user_path(@conn, :index) %></span>
+

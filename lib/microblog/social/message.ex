@@ -6,15 +6,14 @@ defmodule Microblog.Social.Message do
 
   schema "messages" do
     field :post, :string
-    field :user, :string
-
+    belongs_to :user, Microblog.Accounts.User
     timestamps()
   end
 
   @doc false
   def changeset(%Message{} = message, attrs) do
     message
-    |> cast(attrs, [:post, :user])
-    |> validate_required([:post, :user])
+    |> cast(attrs, [:post, :user_id])
+    |> validate_required([:post])
   end
 end

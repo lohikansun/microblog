@@ -5,12 +5,10 @@
   <li>
     <strong>Post:</strong>
     <%= @message.post %>
+    <strong>User:</stron>
+    <%= Microblog.Accounts.get_user!(@message.user_id).email %>
   </li>
 
-  <li>
-    <strong>User:</strong>
-    <%= @message.user %>
-  </li>
 
 </ul>
 

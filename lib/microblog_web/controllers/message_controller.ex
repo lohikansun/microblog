@@ -15,6 +15,8 @@ defmodule MicroblogWeb.MessageController do
   end
 
   def create(conn, %{"message" => message_params}) do
+    id = get_session(conn, :user_id)
+    message_params = %{"post" => message_params["post"], "user_id" => id}
     case Social.create_message(message_params) do
       {:ok, message} ->
         conn

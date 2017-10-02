@@ -8,7 +8,21 @@ defmodule MicroblogWeb.FollowController do
     follows = Accounts.list_follows()
     render(conn, "index.html", follows: follows)
   end
+  
+  def follow(conn, params) do
+    case Accounts.create_follow(params) do
+      {:ok, message} ->
+        conn
+        |> put_flash(:info, "Message created successfully.")
+        |> redirect(to: user_path(conn, :index))
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_flash(:info, "Not Followed")
+        |> redirect(to: user_path(conn, :index))
+    end
 
+  end
+  
   def new(conn, _params) do
     changeset = Accounts.change_follow(%Follow{})
     render(conn, "new.html", changeset: changeset)
@@ -23,11 +37,6 @@ defmodule MicroblogWeb.FollowController do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    follow = Accounts.get_follow!(id)
-    render(conn, "show.html", follow: follow)
   end
 
   def edit(conn, %{"id" => id}) do
