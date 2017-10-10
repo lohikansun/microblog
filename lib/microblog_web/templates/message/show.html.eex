@@ -13,7 +13,36 @@
       </div>
     </div>
   </div>
-
-
 <span><%= link "Edit", to: message_path(@conn, :edit, @message) %></span>
 <span><%= link "Back", to: message_path(@conn, :index) %></span>
+
+<%= if @current_user do %>
+<div class="m-2" id="button-div"
+data-user-id="<%= @current_user.id %>" data-user-email="<%= @current_user.email %>">
+  <button id="like-button" class="btn btn-primary"
+          >Like</button>
+
+</div>
+<% end %>
+
+<div id="message-likes" data-path="<%= like_path(@conn, :index) %>"
+  data-message_id="<%= @message.id %>">
+  &nbsp;
+  </div>
+
+
+<script id="likes-template" type="text/x-handlebars-template">
+  <div class="m-2">
+    <h2>Likes</h2>
+      {{#each data}}
+    <div class="card w-75 m-2">
+      <div class="card-body">
+        <h6 class="">{{user_email}}</h6>
+      </div>
+    </div>
+    {{else}}
+    <p>No likes yet.</p>
+    {{/each}}
+
+  </div>
+</script>
