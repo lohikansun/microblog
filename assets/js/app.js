@@ -43,7 +43,7 @@ $(function() {
   let userEmail = buttonDiv.data('user-email')
   let userId = buttonDiv.data('user-id');
 
-  function doesCurrentUserLike(arr) {
+  function currentLike(arr) {
     return arr['user_email'] == userEmail;
   }
 
@@ -54,17 +54,21 @@ $(function() {
       let html = template(data);
 
       messageLikes.html(html);
-      let doesCurrentLike = data.data.some(doesCurrentUserLike);
-
-      var b = document.getElementById("like-button")
+      let doesCurrentLike = data.data.some(currentLike);
+      let index = data.data.find(currentLike);
+      var b = document.getElementById("like-button");
       if (doesCurrentLike) {
         b.innerHTML = "Unlike";
         b.classList.remove("btn-primary");
         b.classList.add("btn-danger");
+        let id = data.data.find(currentLike);
+        b.setAttribute("currentLike", id["id"]);
+        b.onclick=(remove_like);
       } else {
         b.innerHTML = "Like";
         b.classList.remove("btn-danger");
         b.classList.add("btn-primary");
+        b.onclick=(add_like)
       }
     }
 
@@ -99,9 +103,20 @@ $(function() {
   }
 
   function remove_like() {
-    
+    let likeId = document.getElementById("like-button").getAttribute("currentLike");
+
+    let data = {
+      id: likeId
+    }
+    $.ajax({
+      url: path,
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json",
+      method: "DELETE",
+      success: fetch_likes,
+    });
   }
 
-  button.click(add_like);
   fetch_likes();
 });
