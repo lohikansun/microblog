@@ -102,6 +102,10 @@ defmodule Microblog.Social do
     Message.changeset(message, %{})
   end
 
+  def message_changeset() do
+    Message.changeset(%Message{}, %{})
+  end
+
   alias Microblog.Social.Like
 
   @doc """

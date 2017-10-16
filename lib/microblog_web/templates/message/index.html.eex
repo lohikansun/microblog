@@ -7,26 +7,35 @@
       <th>Last Updated</th>
       <th>By</th>
 
-      
+
     </tr>
   </thead>
   <tbody>
-<%= for message <- @messages do %>
-    <tr>
-      <td><%= message.post %></td>
-      <td><%= message.updated_at %></td>
-      <td><%= Microblog.Accounts.get_user!(message.user_id).email %></td>
-      <td class="text-right">
-        <span><%= link "Show", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
-        <%= if @current_user do %>
-          <%= if @current_user.id == message.user_id do %>
-        <span><%= link "Edit", to: message_path(@conn, :edit, message), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      <% end %>
-      <% end %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-<span><%= link "New Message", to: message_path(@conn, :new), class: "btn btn-success" %></span>
+  <%= for message <- @messages do %>
+      <tr>
+        <td><%= message.post %></td>
+        <td><%= message.updated_at %></td>
+        <td><%= Microblog.Accounts.get_user!(message.user_id).email %></td>
+        <td class="text-right">
+          <span><%= link "Show", to: message_path(@conn, :show, message), class: "btn btn-default btn-xs" %></span>
+          <%= if @current_user do %>
+            <%= if @current_user.id == message.user_id do %>
+          <span><%= link "Edit", to: message_path(@conn, :edit, message), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Delete", to: message_path(@conn, :delete, message), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <% end %>
+        <% end %>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+  <%= if @current_user do %>
+  <div class="m-2" id="message-div"
+  data-user-id="<%= @current_user.id %>" >
+  <div id="message-form" class="form-inline">
+    <textarea id="post-text" class="form-control">Text for your post</textarea>
+    <button id="post-btn" class="btn btn-primary">Post</button>
+  </div>
+
+  </div>
+  <% end %>

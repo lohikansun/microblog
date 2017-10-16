@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body>
+  <body data-page="<%= page_name(@view_module, @view_template) %>">
     <nav class="navbar navbar-dark bg-dark navbar-expand-md">
     <a class="navbar-brand" href="#">Blog?</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar">
@@ -35,7 +35,7 @@
         <%= @current_user.email %> |
         <%= link("logout", to: session_path(@conn, :logout), method: :delete) %>
       </span>
-    
+
     <% else %>
       <%= form_for @conn, session_path(@conn, :login), [as: "user", class: "form-inline w-75 justify-content-end"], fn f -> %>
         <input type="text" placeholder="email" class="form-control mr-sm-2 mr-2" name="email">
@@ -46,10 +46,10 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 my-2">
-          <%= if get_flash(@conn, :info) do %> 
+          <%= if get_flash(@conn, :info) do %>
             <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
           <% end %>
-          <%= if get_flash(@conn, :error) do %> 
+          <%= if get_flash(@conn, :error) do %>
             <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
           <% end %>
         </div>

@@ -9,3 +9,9 @@ Users who are logged in can post a new message from the message index page using
 
 <strong> Follow </strong>
 Users who are logged in can follow other users by clicking the "Follow" button for a different user on the Users index page. Following the user will add that user's email to the "Following" section on the current user's show page. Users can also click "Unfollow" on followed users on the User show page to reverse this effect.
+
+<strong> Like </strong>
+From the show page of a message, logged in users can click the "Like" button to like a message. Clicking the button will add their emails to the list of likes for the message. Once liked, the button will change to "Unlike". Click the button will remove the user's email from the list of likes. The list of likes is public and visible to anyone viewing the show page of a message.
+
+<strong>Deploy script</strong>
+The deploy script found in this repository can be used to automatically release the current version of the microblog application. The script must be run from a checked out git release on the production server. It takes no arguments and will automatically build and deploy the release, and start the application upon success.

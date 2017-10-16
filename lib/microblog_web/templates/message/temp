@@ -1,0 +1,20 @@
+<!--<table class="table">
+<tbody id="message-rows">
+</tbody>
+</table>
+
+<script id="message-template" type="text/x-handlebars-template">
+    {{#each data}}
+    <tr>
+    <td>{{message.post}}</td>
+    <td>{{message.updated_at}}</td>
+    <td><%= Microblog.Accounts.get_user!({{message.user_id}}).email %></td>
+  </tr>
+    {{/each}}
+</script>-->
+
+var messageTemplate = $($("#message-template")[0]);
+var code = messageTemplate.html();
+var template = handlebars.compile(code);
+
+var messageRows = $($("#message-rows")[0]);

@@ -1,3 +1,4 @@
+#!Script attributed to Nat Tuck, original found at https://github.com/NatTuck/nu_mart/blob/master/deploy.sh
 export PORT=8000
 
 DIR="/home/microblog/microblog"
