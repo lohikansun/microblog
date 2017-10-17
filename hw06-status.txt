@@ -1,0 +1,38 @@
+CS4550 Web Dev, Fall 2017.
+
+HW06 status report form.
+
+Please answer the following questions and submit the filled-in file to Bottlenose.
+
+
+1. What's your name?
+Dylan Pincus
+
+
+2. What's the link to your Github repo's releases page?
+https://github.com/lohikansun/microblog/releases
+
+3. What's the link to your deployed Microblog app?
+http://microblog.hmmmmmmm.com
+
+4. What's the link to the Travis CI build for the version of your app
+   that you made a release of? You can find this on Travis under "Build History".
+https://travis-ci.org/lohikansun/microblog/builds
+
+5. Did you successfully deploy? If not, what doesn't work?
+Yes
+
+
+6. Did you successfully implement live updates? If not, what doesn't work?
+Yes. Only caveat being that the edit and delete buttons for each message don't work precises as they should for live messages. Once the page is reloaded they are fixed,
+but before then the edit button can be used by any user, not just the posting user as in the case with preloaded messages. The delete button is not available for live
+message additions as there was an issue with csrf tokens that I was able to solve in time.
+
+
+7. Did Prof. Tuck give you any alternate / additional goals for this assignment?
+   If so, what were they and how well did you complete them with your submission?
+No
+
+
+8. Is there any other useful information that you want to provide for grading?
+No
