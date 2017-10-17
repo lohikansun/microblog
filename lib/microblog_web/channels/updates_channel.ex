@@ -40,6 +40,7 @@ defmodule MicroblogWeb.UpdatesChannel do
       {:ok, message} ->
         response = Map.put(payload, :updated_at, message.updated_at)
         response = Map.put(response, :user_email, email)
+        response = Map.put(response, :message_id, message.id)
         broadcast socket, "message", response
         {:reply, {:ok, payload}, socket}
       {:error, %Ecto.Changeset{} = changeset} ->

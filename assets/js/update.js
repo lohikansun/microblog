@@ -55,6 +55,17 @@ function got_post_response() {
 
 function got_message(msg) {
   console.log("got");
+  handlebars.registerHelper('show', function(object){
+    var url = "/messages/" + object;
+    return new handlebars.SafeString(
+    "<a class=\"btn btn-default btn-xs\" href='" + url + "'>" + "Show</a>")
+  });
+  handlebars.registerHelper('edit', function(object){
+    var url = "/messages/" + object + "/edit";
+    return new handlebars.SafeString(
+    "<a class=\"btn btn-default btn-xs\" href='" + url + "'>" + "Edit</a>")
+  });
+
   var rowTemplate = $($("#row-template")[0]);
   var code = rowTemplate.html();
   var template = handlebars.compile(code);
