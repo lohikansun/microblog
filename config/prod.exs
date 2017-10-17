@@ -16,7 +16,6 @@ use Mix.Config
 config :microblog, MicroblogWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "microblog.hmmmmmmm.com", port: 8000],
-  check_origin: false,
   server: true,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
