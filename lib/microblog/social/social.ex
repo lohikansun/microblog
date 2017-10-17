@@ -18,7 +18,7 @@ defmodule Microblog.Social do
 
   """
   def list_messages do
-    Repo.all(Message)
+    Repo.all(from m in Message, order_by: m.inserted_at)
   end
 
   @doc """

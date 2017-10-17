@@ -11,6 +11,7 @@
     </tr>
   </thead>
   <tbody>
+
   <%= for message <- @messages do %>
       <tr>
         <td><%= message.post %></td>
@@ -33,9 +34,17 @@
   <div class="m-2" id="message-div"
   data-user-id="<%= @current_user.id %>" >
   <div id="message-form" class="form-inline">
-    <textarea id="post-text" class="form-control">Text for your post</textarea>
+    <textarea id="post-text" class="form-control"></textarea>
     <button id="post-btn" class="btn btn-primary">Post</button>
   </div>
 
   </div>
   <% end %>
+
+  <script id="row-template"  type="text/x-handlebars-template">
+    <tr>
+      <td>{{post}}</td>
+      <td>{{updated_at}}</td>
+      <td>{{user_email}}</td>
+    </tr>
+  </script>

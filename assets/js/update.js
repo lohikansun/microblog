@@ -14,6 +14,8 @@ function init() {
   }
 
   join_channel(user);
+  channel.push("follows", {user: user})
+                .receive("ok", follow_response);
   $('#post-btn').click(send_post);
 }
 
@@ -21,12 +23,24 @@ function join_channel(user) {
   var chan = 'updates:';
   chan += (user != null) ? user : "all";
   var data = (user != null) ? {user: user} : {};
-  channel = socket.channel(chan, data);
-  channel.join()
+  var ch = socket.channel(chan, data);
+  ch.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) });
 
-  channel.on("message", got_message);
+  ch.on("message", got_message);
+
+  if (channel == null)
+  {
+    channel = ch;
+  }
+
+}
+
+function follow_response(ids) {
+  ids["follows"].forEach(function(follow_id) {
+    join_channel(follow_id);
+  });
 }
 
 function send_post() {
@@ -41,7 +55,13 @@ function got_post_response() {
 
 function got_message(msg) {
   console.log("got");
+  var rowTemplate = $($("#row-template")[0]);
+  var code = rowTemplate.html();
+  var template = handlebars.compile(code);
+  var html = template(msg);
+  $(html).insertBefore('table > tbody > tr:first');
 }
+
 
 
 
