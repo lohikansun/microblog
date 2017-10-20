@@ -20,9 +20,11 @@ defmodule MicroblogWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: user_path(conn, :show, user))
+        |> redirect(to: page_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_flash(:error, "Oops, something went wrong! Please check the errors below.")
+        |> render("new.html", changeset: changeset)
     end
   end
 
@@ -48,6 +50,11 @@ defmodule MicroblogWeb.UserController do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
     end
+  end
+
+  def landing(conn, _params) do
+    changeset = Accounts.change_user(%User{})
+    render(conn, "landing.html", changeset: changeset)
   end
 
   def delete(conn, %{"id" => id}) do

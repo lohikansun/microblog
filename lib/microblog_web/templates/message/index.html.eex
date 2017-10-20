@@ -1,5 +1,21 @@
-<h2>All Messages</h2>
+<%= if @current_user do %>
+  <h2>Feed for <%= @current_user.email %></h2>
+  <a class="btn btn-primary" data-toggle="collapse" href="#message-div">New Message</a>
+  <div class="m-2 collapse" id="message-div"
+  data-user-id="<%= @current_user.id %>" >
+  <div id="message-form" >
+    <div class="form-group">
+    <textarea id="post-text" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <button id="post-btn" class="btn btn-primary">Post</button>
+  </div>
+  </div>
 
+  </div>
+  <% else %>
+  <h2> Public Feed </h2>
+  <% end %>
 <table class="table">
   <thead>
     <tr>
@@ -30,16 +46,6 @@
   <% end %>
     </tbody>
   </table>
-  <%= if @current_user do %>
-  <div class="m-2" id="message-div"
-  data-user-id="<%= @current_user.id %>" >
-  <div id="message-form" class="form-inline">
-    <textarea id="post-text" class="form-control"></textarea>
-    <button id="post-btn" class="btn btn-primary">Post</button>
-  </div>
-
-  </div>
-  <% end %>
 
   <script id="row-template"  type="text/x-handlebars-template">
     <tr>

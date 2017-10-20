@@ -21,12 +21,14 @@ defmodule MicroblogWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/messages", MessageController
+    get "/feed", MessageController, :index
+    resources "/messages", MessageController, except: [:index, :new]
     resources "/users", UserController
     resources "/follows", FollowController
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
     get "/follow", FollowController, :follow
+    get "/landing", UserController, :landing
   end
 
   # Other scopes may use custom stacks.

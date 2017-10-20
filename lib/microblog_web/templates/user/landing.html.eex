@@ -1,0 +1,49 @@
+
+
+<div class="card mx-auto" style="width: 20rem">
+  <div class="card-block">
+    <h3 class="card-title text-center">Welcome</h3>
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a class="btn btn-primary btn-lg btn-block collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Register
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div id="registerDiv" class="card-block">
+        <%= render "form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h5 class="mb-0">
+        <a class="btn btn-primary btn-lg btn-block collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Login
+        </a>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div id="loginDiv" class="card-block text-center">
+        <%= form_for @conn, session_path(@conn, :login), [as: "user"], fn f -> %>
+        <div class="form-group">
+          <label class="control-label" for"email">Email</label>
+          <input type="text"  class="form-control mr-sm-2 mr-2" name="email">
+          <label class="control-label" for"password">Password</label>
+          <input type="password"
+                   class="form-control mr-sm-2 mr-2" name="password">
+          <input type="submit" value="Log in" class="btn btn-success my-2 my-sm-0 mr-2">
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+</div>

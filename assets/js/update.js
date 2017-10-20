@@ -51,6 +51,7 @@ function send_post() {
 
 function got_post_response() {
   console.log("Post successful");
+  $($('#post-text')[0])[0].value = "";
 }
 
 function got_message(msg) {
