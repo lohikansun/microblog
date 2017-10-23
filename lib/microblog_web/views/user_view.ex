@@ -3,9 +3,8 @@ defmodule MicroblogWeb.UserView do
   use MicroblogWeb, :view
 
   def imageSrc(id) do
-    path = Application.get_env(:microblog, :full_upload_path)
-    p = "../images/#{id}-picture.jpg"
-    p
+   "../images/#{id}-picture.jpg"
+    
 
   end
 
