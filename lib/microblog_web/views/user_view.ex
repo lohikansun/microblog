@@ -1,6 +1,12 @@
 defmodule MicroblogWeb.UserView do
   use MicroblogWeb, :view
 
+  def imageSrc(id) do
+    path = :code.priv_dir(:microblog)
+    "#{path}/profiles/#{id}-picture.jpg"
+
+  end
+
   def as_html(post) do
     post
     |> Earmark.as_html!

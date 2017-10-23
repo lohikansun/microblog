@@ -1,3 +1,4 @@
+require IEx
 defmodule MicroblogWeb.UserController do
   use MicroblogWeb, :controller
 
@@ -18,6 +19,11 @@ defmodule MicroblogWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     case Accounts.create_user(user_params) do
       {:ok, user} ->
+        if upload = user_params["photo"] do
+          path = :code.priv_dir(:microblog)
+          fullPath = "#{path}/profiles/#{user.id}-picture.jpg"
+          File.cp(upload.path, fullPath)
+        end
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: page_path(conn, :index))
