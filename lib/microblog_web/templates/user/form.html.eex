@@ -23,11 +23,13 @@
     <%= error_tag f, :password_confirmation %>
 
   </div>
+<%= if (@current_user != nil and @current_user.is_admin?)  do %>
 
   <div class="form-group">
     <%= label f, :is_admin?, class: "control-label" %>
     <%= checkbox f, :is_admin?, class: "control-label" %>
   </div>
+  <% end %>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-success" %>
