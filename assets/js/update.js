@@ -2,7 +2,6 @@ import socket from "./socket";
 // Global vars
 var channel;
 let handlebars = require("handlebars");
-
 function init() {
   if ($('body').data('page') != "MessageView/index") {
     return;
@@ -65,6 +64,9 @@ function got_message(msg) {
     var url = "/messages/" + object + "/edit";
     return new handlebars.SafeString(
     "<a class=\"btn btn-default btn-xs\" href='" + url + "'>" + "Edit</a>")
+  });
+  handlebars.registerHelper('markdown', function(object){
+    return new handlebars.SafeString(micromarkdown.parse(object));
   });
 
   var rowTemplate = $($("#row-template")[0]);

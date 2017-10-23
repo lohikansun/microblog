@@ -11,6 +11,7 @@ defmodule Microblog.Accounts.User do
     field :password_hash, :string
     field :pw_tries, :integer
     field :pw_last_try, :utc_datetime
+    field :is_admin?, :boolean
 
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -24,7 +25,7 @@ defmodule Microblog.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :password_confirmation])
+    |> cast(attrs, [:email, :is_admin?, :password, :password_confirmation])
     |> validate_email(:email)
     |> validate_confirmation(:password)
     |> validate_password(:password)

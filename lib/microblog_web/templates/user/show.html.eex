@@ -3,6 +3,12 @@
       <div class="col-md-8">
         <div class="card">
           <h2 class="card-title"><%= @user.email %></h2>
+            <%= if @user.is_admin? do %>
+              <p><kbd>Admin User</kbd></p>
+              <% else %>
+              <p><kbd>Basic User</kbd></p>
+              <% end %>
+
           <table class="table table-striped">
       <tr>
         <th>Post</th>
@@ -10,7 +16,7 @@
       </th>
       <%= Enum.map @user.messages, fn message -> %>
       <tr>
-        <td><%= message.post %></td>
+        <td><%= as_html(message.post) %></td>
         <td><%= message.updated_at %></td>
       </tr>
     <% end %>
@@ -34,4 +40,3 @@
   </div>
 
 <span><%= link "Back", to: user_path(@conn, :index) %></span>
-
