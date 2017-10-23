@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card">
-          <img class="card-img-top" src="<%= imageSrc(@user.id) %>" alt="Card image cap">
+          <img class="card-img-top" src="<%= imageSrc(@user.id) %>" alt="Profile picture not found.">
           <h2 class="card-title"><%= @user.email %></h2>
             <%= if @user.is_admin? do %>
               <p><kbd>Admin User</kbd></p>

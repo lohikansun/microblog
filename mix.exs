@@ -20,6 +20,7 @@ defmodule Microblog.Mixfile do
   def application do
     [
       mod: {Microblog.Application, []},
+      env: [full_upload_path: "/home/microblog/microblog/lib/microblog-0.0.1/priv/profiles"],
       extra_applications: [:logger, :runtime_tools]
     ]
   end

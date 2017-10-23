@@ -1,9 +1,11 @@
+require IEx
 defmodule MicroblogWeb.UserView do
   use MicroblogWeb, :view
 
   def imageSrc(id) do
-    path = :code.priv_dir(:microblog)
-    "../images/#{id}-picture.jpg"
+    path = Application.get_env(:microblog, :full_upload_path)
+    p = "../images/#{id}-picture.jpg"
+    p
 
   end
 

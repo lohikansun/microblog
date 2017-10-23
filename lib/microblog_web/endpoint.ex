@@ -12,7 +12,7 @@ defmodule MicroblogWeb.Endpoint do
     only: ~w(css fonts images profiles js favicon.ico robots.txt)
 
   plug Plug.Static,
-    at: "images/", from: "/home/microblog/microblog/lib/microblog-0.0.1/priv/profiles", gzip: false
+    at: "images/", from: Application.get_env(:microblog, :full_upload_path), gzip: false
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

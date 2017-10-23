@@ -20,8 +20,9 @@ defmodule MicroblogWeb.UserController do
     case Accounts.create_user(user_params) do
       {:ok, user} ->
         if upload = user_params["photo"] do
-          path = :code.priv_dir(:microblog)
-          fullPath = "/home/microblog/microblog/lib/microblog-0.0.1/priv/profiles/#{user.id}-picture.jpg"
+          path = Application.get_env(:microblog, :full_upload_path)
+          fullPath = "#{path}/#{user.id}-picture.jpg"
+          IEx.pry
           File.cp(upload.path, fullPath)
         end
         conn
