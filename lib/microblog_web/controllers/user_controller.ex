@@ -21,7 +21,7 @@ defmodule MicroblogWeb.UserController do
       {:ok, user} ->
         if upload = user_params["photo"] do
           path = :code.priv_dir(:microblog)
-          fullPath = "#{path}/static/profiles/#{user.id}-picture.jpg"
+          fullPath = "#{path}/static/#{user.id}-picture.jpg"
           File.cp(upload.path, fullPath)
         end
         conn

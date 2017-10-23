@@ -3,7 +3,7 @@ defmodule MicroblogWeb.UserView do
 
   def imageSrc(id) do
     path = :code.priv_dir(:microblog)
-    "#{path}/static/profiles/#{id}-picture.jpg"
+    "#{path}/static/#{id}-picture.jpg"
 
   end
 

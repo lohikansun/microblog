@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
     <script type="text/javascript"
-src="http://simonwaldherr.github.io/micromarkdown.js/micromarkdown.js">
+src="https://simonwaldherr.github.io/micromarkdown.js/micromarkdown.js">
 </script>
   </head>
 
