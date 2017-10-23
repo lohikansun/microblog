@@ -1,4 +1,3 @@
-require IEx
 defmodule MicroblogWeb.UserController do
   use MicroblogWeb, :controller
 
@@ -22,7 +21,6 @@ defmodule MicroblogWeb.UserController do
         if upload = user_params["photo"] do
           path = Application.get_env(:microblog, :full_upload_path)
           fullPath = "#{path}/#{user.id}-picture.jpg"
-          IEx.pry
           File.cp(upload.path, fullPath)
         end
         conn
