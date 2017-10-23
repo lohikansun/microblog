@@ -11,6 +11,8 @@ defmodule MicroblogWeb.Endpoint do
     at: "/", from: :microblog, gzip: false,
     only: ~w(css fonts images profiles js favicon.ico robots.txt)
 
+  plug Plug.Static,
+    at: "images/", from: "#{:code.priv_dir(:microblog)}/static/profiles", gzip: false
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
